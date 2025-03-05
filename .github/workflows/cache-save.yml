@@ -1,0 +1,20 @@
+name: Cache a Fake Predictor
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  cache_predictor:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: |
+          echo "The workflow ran" > Predictor
+
+      - uses: actions/cache/save@v4
+        id: cache
+        with:
+          path: Predictor
+          key: github-ml-labeler/predictor-app
